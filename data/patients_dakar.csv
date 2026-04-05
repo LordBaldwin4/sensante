@@ -1,0 +1,21 @@
+id,nom,age,sexe,diagnostic,region,temperature
+1,Diallo Amadou,34,M,paludisme,Dakar,38.5
+2,Ndiaye Fatou,28,F,typhoide,Thiès,39.1
+3,Fall Ibrahima,45,M,diabete,Saint-Louis,37.2
+4,Sow Mariama,52,F,hypertension,Ziguinchor,37.8
+5,Ba Ousmane,23,M,paludisme,Dakar,39.3
+6,Diop Aissatou,31,F,paludisme,Kaolack,38.9
+7,Mbaye Cheikh,67,M,diabete,Dakar,36.8
+8,Sarr Rokhaya,41,F,typhoide,Thiès,38.7
+9,Kane Moussa,29,M,paludisme,Louga,39.0
+10,Gueye Sokhna,55,F,hypertension,Dakar,37.5
+11,Sy Abdoulaye,38,M,typhoide,Saint-Louis,38.4
+12,Thiam Ndèye,44,F,diabete,Ziguinchor,37.1
+13,Cissé Modou,26,M,paludisme,Dakar,39.2
+14,Diouf Yacine,33,F,hypertension,Kaolack,37.9
+15,Faye Lamine,49,M,diabete,Thiès,36.9
+16,Niang Bineta,22,F,paludisme,Dakar,38.6
+17,Diatta Omar,61,M,hypertension,Ziguinchor,37.3
+18,Badji Khady,36,F,typhoide,Dakar,39.4
+19,Mendy Pascal,27,M,paludisme,Saint-Louis,38.8
+20,Camara Adja,48,F,diabete,Louga,37.0
