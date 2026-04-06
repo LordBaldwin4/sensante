@@ -5,9 +5,9 @@ Lab 1 : Git, Python et Structure Projet
 import pandas as pd
 
 # ===== CHARGER LES DONNEES =====
-df = pd.read_csv("data/patients_dakar.csv", encoding="latin-1", sep=None, engine="python")
+df = pd.read_csv("data/patients_dakar.csv", encoding="utf-8", sep=",")
 
-# ===== PREMIERS APER US =====
+# ===== PREMIERS APERCUS =====
 print("=" * 50)
 print("SENSANTE - Exploration du dataset")
 print("=" * 50)
@@ -44,7 +44,7 @@ temp_by_diag = df.groupby("diagnostic")["temperature"].mean()
 for diag, temp in temp_by_diag.items():
     print(f"  {diag:12s} : {temp:.1f} C")
 
-# ===== PATIENTS PAR SEXE ET DIAGNOSTIC =====
+# ===== PATIENTS PAR SEXE ET DIAGNOSTIC (Exercice 1) =====
 print(f"\n--- Patients par sexe et diagnostic ---")
 sexe_diag = df.groupby(["sexe", "diagnostic"]).size()
 for (sexe, diag), count in sexe_diag.items():
