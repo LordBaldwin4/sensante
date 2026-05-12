@@ -24,11 +24,12 @@ le_region = LabelEncoder()
 df['sexe_encoded'] = le_sexe.fit_transform(df['sexe'])
 df['region_encoded'] = le_region.fit_transform(df['region'])
 
-feature_cols = ['age', 'sexe_encoded', 'temperature', 'tension_sys', 'toux', 'fatigue', 'maux_tete', 'region_encoded']
+feature_cols = ['age', 'sexe_encoded', 'temperature', 'tension_sys', 'toux', 'fatigue', 'maux_tete', 'frissons', 'nausee', 'region_encoded']
 X = df[feature_cols]
 y = df['diagnostic']
 
 print("\n--- Etape 3 ---")
+np.random.seed(42)
 X_train, X_test, y_train, y_test = train_test_split(
     X, y, test_size=0.2, random_state=42, stratify=y
 )
@@ -36,7 +37,14 @@ print(f"Entrainement : {X_train.shape[0]} patients")
 print(f"Test : {X_test.shape[0]} patients")
 
 print("\n--- Etape 4 ---")
-model = RandomForestClassifier(n_estimators=100, random_state=42)
+model = RandomForestClassifier(
+    n_estimators=60, 
+    max_depth=9,
+    min_samples_split=11,
+    min_samples_leaf=4,
+    random_state=42,
+    n_jobs=1
+)
 model.fit(X_train, y_train)
 print("Modele entraine !")
 print(f"Nombre d'arbres : {model.n_estimators}")
@@ -53,7 +61,9 @@ comparison = pd.DataFrame({
 print("Comparaison (10 premiers) :\n", comparison)
 
 accuracy = accuracy_score(y_test, y_pred)
-print(f"\nAccuracy : {accuracy:.2%}")
+print(f"\n{'='*50}")
+print(f"ACCURACY : {accuracy:.2%} ({int(accuracy*len(y_test))}/{len(y_test)} predictions correctes)")
+print(f"{'='*50}")
 
 cm = confusion_matrix(y_test, y_pred, labels=model.classes_)
 print("\nMatrice de confusion :")
@@ -91,13 +101,13 @@ print(f"Classes : {list(model_loaded.classes_)}")
 
 nouveau_patient = {
     'age': 28, 'sexe': 'F', 'temperature': 39.5, 'tension_sys': 110,
-    'toux': True, 'fatigue': True, 'maux_tete': True, 'region': 'Dakar'
+    'toux': True, 'fatigue': True, 'maux_tete': True, 'frissons': True, 'nausee': False, 'region': 'Dakar'
 }
 sexe_enc = le_sexe_loaded.transform([nouveau_patient['sexe']])[0]
 region_enc = le_region_loaded.transform([nouveau_patient['region']])[0]
 features = [
     nouveau_patient['age'], sexe_enc, nouveau_patient['temperature'], nouveau_patient['tension_sys'],
-    int(nouveau_patient['toux']), int(nouveau_patient['fatigue']), int(nouveau_patient['maux_tete']), region_enc
+    int(nouveau_patient['toux']), int(nouveau_patient['fatigue']), int(nouveau_patient['maux_tete']), int(nouveau_patient['frissons']), int(nouveau_patient['nausee']), region_enc
 ]
 
 diagnostic = model_loaded.predict([features])[0]
@@ -120,9 +130,9 @@ for name, imp in sorted(zip(feature_cols, importances), key=lambda x: x[1], reve
 
 print("\n--- Exercice 2 ---")
 patients = [
-    {'age': 20, 'sexe': 'M', 'temperature': 37.0, 'tension_sys': 120, 'toux': False, 'fatigue': False, 'maux_tete': False, 'region': 'Dakar'},
-    {'age': 45, 'sexe': 'M', 'temperature': 40.2, 'tension_sys': 130, 'toux': True, 'fatigue': True, 'maux_tete': True, 'region': 'Pikine'},
-    {'age': 75, 'sexe': 'F', 'temperature': 37.5, 'tension_sys': 110, 'toux': True, 'fatigue': True, 'maux_tete': False, 'region': 'Rufisque'}
+    {'age': 20, 'sexe': 'M', 'temperature': 37.0, 'tension_sys': 120, 'toux': False, 'fatigue': False, 'maux_tete': False, 'frissons': False, 'nausee': False, 'region': 'Dakar'},
+    {'age': 45, 'sexe': 'M', 'temperature': 40.2, 'tension_sys': 130, 'toux': True, 'fatigue': True, 'maux_tete': True, 'frissons': True, 'nausee': True, 'region': 'Pikine'},
+    {'age': 75, 'sexe': 'F', 'temperature': 37.5, 'tension_sys': 110, 'toux': True, 'fatigue': True, 'maux_tete': False, 'frissons': False, 'nausee': True, 'region': 'Rufisque'}
 ]
 for i, p in enumerate(patients):
     s_e = le_sexe_loaded.transform([p['sexe']])[0]
@@ -130,6 +140,6 @@ for i, p in enumerate(patients):
          r_e = le_region_loaded.transform([p['region']])[0]
     except ValueError:
          r_e = 0
-    f = [p['age'], s_e, p['temperature'], p['tension_sys'], int(p['toux']), int(p['fatigue']), int(p['maux_tete']), r_e]
+    f = [p['age'], s_e, p['temperature'], p['tension_sys'], int(p['toux']), int(p['fatigue']), int(p['maux_tete']), int(p['frissons']), int(p['nausee']), r_e]
     diag = model_loaded.predict([f])[0]
     print(f"Patient {i+1} : {p} -> Diagnostic: {diag}")
