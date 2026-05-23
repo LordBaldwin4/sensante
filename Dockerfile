@@ -1,8 +1,6 @@
 
 FROM python:3.11-slim
 
-RUN apt-get update && apt-get install -y wget
-
 WORKDIR /app
 
 COPY requirements.txt .
@@ -10,10 +8,7 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . .
 
-RUN wget -O /app/model.pkl "https://huggingface.co/spaces/Bass2332/sensante/resolve/main/model.pkl?download=true"
-RUN wget -O /app/encoder_sexe.pkl "https://huggingface.co/spaces/Bass2332/sensante/resolve/main/encoder_sexe.pkl?download=true"
-RUN wget -O /app/encoder_region.pkl "https://huggingface.co/spaces/Bass2332/sensante/resolve/main/encoder_region.pkl?download=true"
-RUN wget -O /app/feature_cols.pkl "https://huggingface.co/spaces/Bass2332/sensante/resolve/main/feature_cols.pkl?download=true"
+RUN pip install huggingface_hub && python -c "from huggingface_hub import hf_hub_download; import shutil; [shutil.copy(hf_hub_download(repo_id='Bass2332/sensante', filename=f, repo_type='space'), f'/app/{f}') for f in ['model.pkl','encoder_sexe.pkl','encoder_region.pkl','feature_cols.pkl']]"
 
 EXPOSE 7860
 
