@@ -129,10 +129,10 @@ def serve_frontend():
 
 print("Chargement modele...")
 
-model = joblib.load("model.pkl")
-le_sexe = joblib.load("encoder_sexe.pkl")
-le_region = joblib.load("encoder_region.pkl")
-feature_cols = joblib.load("feature_cols.pkl")
+model = joblib.load("/app/model.pkl")
+le_sexe = joblib.load("/app/encoder_sexe.pkl")
+le_region = joblib.load("/app/encoder_region.pkl")
+feature_cols = joblib.load("/app/feature_cols.pkl")
 
 # ============================================================
 # PREDICT
