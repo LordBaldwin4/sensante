@@ -1,4 +1,4 @@
-# 🏥 SenSante
+#  SenSante
 
 > **Assistant intelligent de pré-évaluation médicale adapté au contexte sénégalais**
 
@@ -6,11 +6,11 @@ SenSante est une application web d'aide à la **pré-évaluation de symptômes**
 
 L'application combine un **modèle de Machine Learning**, une **API FastAPI** et un **LLM via Groq** afin de produire une estimation et une explication accessible en français et en wolof.
 
-⚠️ **Important : SenSante est un outil d'aide et ne remplace pas un médecin, un professionnel de santé ou un diagnostic médical.**
+ **Important : SenSante est un outil d'aide et ne remplace pas un médecin, un professionnel de santé ou un diagnostic médical.**
 
 ---
 
-## 🎯 Objectifs
+##  Objectifs
 
 SenSante a été conçu pour :
 
@@ -22,9 +22,9 @@ SenSante a été conçu pour :
 
 ---
 
-## ✨ Fonctionnalités
+##  Fonctionnalités
 
-### 🩺 Pré-évaluation
+### Pré-évaluation
 
 L'utilisateur renseigne notamment :
 
@@ -41,7 +41,7 @@ L'utilisateur renseigne notamment :
 
 Ces informations sont transformées en caractéristiques numériques puis envoyées au modèle de Machine Learning.
 
-### 🤖 Machine Learning
+###  Machine Learning
 
 Le projet utilise un **Random Forest Classifier** avec 100 arbres.
 
@@ -68,7 +68,7 @@ L'API retourne également une probabilité ainsi qu'un niveau de confiance :
 
 ---
 
-## 🧠 Explication par IA
+##  Explication par IA
 
 Après la prédiction du modèle, SenSante peut utiliser **Groq** avec le modèle :
 
@@ -82,7 +82,7 @@ L'objectif est de présenter le résultat dans un langage accessible, avec un m�
 
 ---
 
-## 🏗️ Architecture
+## Architecture
 
 ```text
                     ┌─────────────────────┐
@@ -118,7 +118,7 @@ L'objectif est de présenter le résultat dans un langage accessible, avec un m�
 
 ---
 
-## 📁 Structure du projet
+##  Structure du projet
 
 ```text
 sensante/
@@ -150,7 +150,7 @@ Le dépôt contient également des notebooks, des figures et des fichiers liés 
 
 ---
 
-## 🛠️ Technologies utilisées
+##  Technologies utilisées
 
 | Technologie             | Utilisation                     |
 | ----------------------- | ------------------------------- |
@@ -171,7 +171,7 @@ Le backend est construit avec FastAPI et expose notamment les routes `/predict`,
 
 ---
 
-# 🚀 Installation
+#  Installation
 
 ## 1. Cloner le projet
 
@@ -204,7 +204,7 @@ pip install -r requirements.txt
 
 ---
 
-# 🔑 Configuration de Groq
+#  Configuration de Groq
 
 Pour utiliser la fonctionnalité d'explication par LLM, définir une clé API Groq.
 
@@ -220,7 +220,7 @@ L'application charge cette variable d'environnement au démarrage. Si aucune cl�
 
 ---
 
-# 🧠 Entraîner le modèle
+#  Entraîner le modèle
 
 Le modèle peut être entraîné avec :
 
@@ -262,7 +262,7 @@ region
 
 ---
 
-# ▶️ Lancer l'application
+#  Lancer l'application
 
 Une fois les dépendances installées et le modèle généré :
 
@@ -284,7 +284,7 @@ frontend/index.html
 
 ---
 
-# 🐳 Utilisation avec Docker
+#  Utilisation avec Docker
 
 Le projet fournit également un `Dockerfile` basé sur **Python 3.11 slim** et installe les dépendances depuis `requirements.txt`.
 
@@ -371,7 +371,7 @@ Le système est conçu pour expliquer simplement le résultat en **français + w
 
 ---
 
-# 📊 Données
+#  Données
 
 Le modèle utilise un jeu de données contenant des informations de patients, notamment des variables démographiques, des symptômes et des mesures physiologiques.
 
@@ -385,7 +385,7 @@ Le choix de variables comme la région vise notamment à prendre en compte le co
 
 ---
 
-# ⚠️ Limites et avertissement médical
+#  Limites et avertissement médical
 
 SenSante est un **prototype d'aide à la pré-évaluation**.
 
@@ -403,7 +403,7 @@ En cas de symptômes importants, persistants ou inquiétants, il est recommandé
 
 ---
 
-# 🔐 Sécurité
+#  Sécurité
 
 Quelques bonnes pratiques sont indispensables avant une utilisation en production :
 
@@ -418,25 +418,25 @@ Quelques bonnes pratiques sont indispensables avant une utilisation en productio
 
 ---
 
-# 🧪 Évolution possible
+#  Évolution possible
 
 Les prochaines versions pourraient intégrer :
 
-* 📈 une évaluation complète du modèle : précision, rappel, F1-score, matrice de confusion ;
-* 🧪 une validation sur un jeu de test indépendant ;
-* 🌍 davantage de langues locales ;
-* 📱 une interface mobile ;
-* 👨‍⚕️ un espace professionnel de santé ;
-* 📊 un historique des évaluations ;
-* 🔐 une authentification sécurisée ;
-* 🗄️ une base de données ;
-* 🏥 une meilleure intégration avec les structures de santé ;
-* 🤖 l'amélioration et la validation du modèle ML ;
-* 🚨 une meilleure détection des situations nécessitant une consultation urgente.
+*  une évaluation complète du modèle : précision, rappel, F1-score, matrice de confusion ;
+*  une validation sur un jeu de test indépendant ;
+*  davantage de langues locales ;
+*  une interface mobile ;
+*  un espace professionnel de santé ;
+*  un historique des évaluations ;
+*  une authentification sécurisée ;
+*  une base de données ;
+*  une meilleure intégration avec les structures de santé ;
+*  l'amélioration et la validation du modèle ML ;
+*  une meilleure détection des situations nécessitant une consultation urgente.
 
 ---
 
-# 📚 Documentation API
+#  Documentation API
 
 Lorsque l'application est lancée, FastAPI fournit automatiquement la documentation interactive.
 
@@ -454,7 +454,7 @@ http://localhost:8000/redoc
 
 ---
 
-# 👨‍💻 Développement
+#  Développement
 
 Pour contribuer au projet :
 
@@ -484,7 +484,7 @@ git push origin feature/ma-fonctionnalite
 
 ---
 
-# 📄 Licence
+#  Licence
 
 Aucune licence open source spécifique n'est actuellement indiquée dans le dépôt.
 
@@ -492,7 +492,7 @@ Avant toute réutilisation ou distribution du projet, il est recommandé d'ajout
 
 ---
 
-# ❤️ SenSante
+#  SenSante
 
 SenSante a pour ambition de mettre l'intelligence artificielle au service d'une **première orientation médicale accessible**, en tenant compte du contexte local et linguistique sénégalais.
 
